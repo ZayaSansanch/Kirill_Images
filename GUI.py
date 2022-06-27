@@ -1,12 +1,9 @@
 import wx
- 
-class Window(wx.Frame):
-    def __init__(self, title):
-        super().__init__(parent = None, title = title)
-        self.panel = wx.Panel(self)
- 
-        self.Show()
-         
+
+def __init__(self, parent, title):
+     self.Bind(wx.EVT_MENU, self.OnAbout, aboutItem)
+
 app = wx.App()
-window = Window("Coloring utility")
+wnd = wx.Frame(None, wx.ID_ANY, "Coloring utility")
+wnd.Show(True)
 app.MainLoop()
