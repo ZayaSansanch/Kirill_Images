@@ -11,14 +11,13 @@ import os
 
 downIMG = ""
 downIMGLable = ""
-image = ""
 filepath = ""
 pixel = (0, 0, 0)
 pixelRight = (0, 0, 0)
 cmena = False
 pR = 0
 pG = 0
-pb = 0
+pB = 0
 
 def openfile():
     filepath = filedialog.askopenfile(title="Select file")
@@ -31,8 +30,13 @@ filetypes = (
     ('All files', '*.*')
 )
 
-filenames = fd.askopenfilenames(
+downfilenames = fd.askopenfilenames(
     title='Coloring utility/open file',
+    initialdir='/',
+    filetypes=filetypes)
+
+upfilenames = fd.askopenfilenames(
+    title='Coloring utility/save file',
     initialdir='/',
     filetypes=filetypes)
 
@@ -45,27 +49,54 @@ curDir = os.getcwd()
 fn = curDir
 
 root = Tk()
-print(filenames[0])
-downIMG = ImageTk.PhotoImage(Image.open(filenames[0]).resize((320, 240)))
+print("Downfilenames: ", downfilenames[0], " Upfilenames", upfilenames[0])
+downIMG = ImageTk.PhotoImage(Image.open(downfilenames[0]).resize((320, 240)))
 downIMGLable = Label(image = downIMG)
 # downIMGLable.grid(row = 8, column = 1)
-    
+
+# def upImage():
+upIMG = ImageTk.PhotoImage(Image.open(downfilenames[0]).resize((320, 240)))
+upIMGLable = Label(image = upIMG)
+upIMGLable.grid(row = 6, column = 2)
 
 root.title("Coloring utility")
 root.geometry("1280x720")
 root.resizable(width = False, height = False)
 
+def result():
+    upfilename = Image.open(upfilenames[0])
+    for i in range(0, upfilename.size[0]):
+        for j in range(0, upfilename.size[1]):
+            # Пиксели цвета (0, 0, 0) крашу в (1, 1, 1)
+            if upfilename.getpixel((i, j)) == (0, 0, 0): upfilename.putpixel((i, j), (1, 1, 1))
+            
+            # Крашу линии
+            pixel = upfilename.getpixel((i, j))
+            if j < upfilename.size[1] - 1:
+                pixelRight = upfilename.getpixel((i, j + 1))
+            
+            if abs(pixel[0] - pixelRight[0]) > pR: cmena = True
+            if abs(pixel[1] - pixelRight[1]) > pG: cmena = True
+            if abs(pixel[2] - pixelRight[2]) > pB: cmena = True
+
+            if cmena == True:
+                upfilename.putpixel((i, j), (0, 0, 0))
+                cmena = False
+
+            # Пиксели цвета > (0, 0, 0) крашу в (255, 255, 255)
+            if upfilename.getpixel((i, j)) > (0, 0, 0): upfilename.putpixel((i, j), (255, 255, 255))
+    upfilename.save("result2")
+
+frame_parogue = Frame(root)
 pR = Entry(text = "Red porogue")
 pG = Entry(text = "Green porogue")
 pB = Entry(text = "blue porogue")
-
 
 pRtext = Label(text = "Red porogue:")
 pGtext = Label(text = "Green porogue:")
 pBtext = Label(text = "blue porogue:")
 
-
-result = Button(text = "Result")
+result = Button(text = "Result", command = result)
 
 result.grid(row = 5, column = 2)
 
