@@ -12,12 +12,16 @@ image_name = "icon.jpg"
 image = Image.open(image_name)
 
 # Запрашиваю параметры парогов смены цвета
-pR = input("Parogue for R chnnale")
+pR = input("Parogue for red channel: ")
+pG = input("Parogue for green channel: ")
+pB = input("Parogue for blue channel: ")
 
-# Вывод параметров изображения
+# Вывод параметров изображения и парогов восприятия
 print("Image: ", image.format, image.size, image.mode)
+print("Parogue (RGB): ", pR, pG, pB)
 
-# Работа с изображением
+# Работаю с изображением
+print("Working with image")
 for i in range(0, image.size[0]):
     for j in range(0, image.size[1]):
         # Пиксели цвета (0, 0, 0) крашу в (1, 1, 1)
