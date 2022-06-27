@@ -45,7 +45,7 @@ for i in range(0, image.size[0]):
         # Пиксели цвета > (0, 0, 0) крашу в (255, 255, 255)
         if image.getpixel((i, j)) > (0, 0, 0): image.putpixel((i, j), (255, 255, 255))
 
-        if image.getpixel(i, j) == (0, 0, 0):
+        if image.getpixel((i, j)) == (0, 0, 0):
             if i > 0: image.putpixel((i - 1, j), (0, 0, 0))
             if i < image.size[0]: image.putpixel((i + 1, j), (0, 0, 0))
             if j > 0: image.putpixel((i, j - 1), (0, 0, 0))
