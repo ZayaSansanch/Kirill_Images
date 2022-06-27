@@ -1,3 +1,14 @@
-import tk
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
 
-label = tk.Label(text='Hello world')
+class Container(GridLayout):
+    pass
+
+class MainApp(App):
+    def build(self):
+        self.title = 'Coloring utility'
+        return Container()
+
+if __name__ == "__main__":
+    app = MainApp()
+    app.run()
