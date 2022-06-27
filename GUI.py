@@ -79,6 +79,6 @@ downIMGLable.grid(row = 6, column = 1)
 
 pRtext.grid(row = 1, column = 1)
 pGtext.grid(row = 2, column = 1)
-pBtext.grid(row = 3 , column = 1)
+pBtext.grid(row = 3, column = 1)
 
 root.mainloop()
