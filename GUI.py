@@ -7,7 +7,7 @@ import os
 # Переменная экрана и параметры экрана
 root = Tk()
 root.title("Coloring utility")
-root.geometry("1280x720")
+root.geometry("450x375")
 root.resizable(width = False, height = False)
 
 # Переменные для обработки изобрадениия
@@ -29,7 +29,7 @@ def get_value(entryWidget):
         return None
 def result():
     print("Working")
-    upfilename = Image.open(upfilenames[0])
+    upfilename = Image.open(downfilenames[0])
     for i in range(0, upfilename.size[0]):
         for j in range(0, upfilename.size[1]):
             cmena = False
