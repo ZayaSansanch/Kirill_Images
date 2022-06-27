@@ -1,81 +1,32 @@
-from cProfile import label
-from fileinput import filename
 from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageTk
-from tkinter import ttk
 from tkinter import filedialog as fd
-from tkinter.messagebox import showinfo
-# from PIL import ImageFilter
 import os
 
-downIMG = ""
-downIMGLable = ""
-filepath = ""
-pixel = (0, 0, 0)
-pixelRight = (0, 0, 0)
-# cmena = False
-pR = 0
-pG = 0
-pB = 0
-
-def openfile():
-    filepath = filedialog.askopenfile(title="Select file")
-    print(filepath.read())
-
-# def select_files():
-filetypes = (
-    ('IMG files', '*.jpg ' + '*,jpeg ' + '*.png '),
-    # ('IMG files', '*.jpg'),
-    ('All files', '*.*')
-)
-
-downfilenames = fd.askopenfilenames(
-    title='Coloring utility/open file',
-    initialdir='/',
-    filetypes=filetypes)
-
-# upfilenames = fd.askopenfilenames(
-#     title='Coloring utility/save file',
-#     initialdir='/',
-#     filetypes=filetypes)
-
-# print(downfilenames)
-# downfile = downfilenames[0].read()
-# Image.new(mode = "RGB", size = (downfile.size[0], downfile.size[1]))
-upfilenames = Image.new(mode = "RGB", size = (1, 1))
-
-# showinfo(
-#     title='Selected Files',
-#     message=filenames
-# )
-
-curDir = os.getcwd()
-fn = curDir
-
+# Переменная экрана и параметры экрана
 root = Tk()
-# print("Downfilenames: ", downfilenames[0], " Upfilenames", upfilenames[0])
-print("Downfilenames: ", downfilenames[0])
-downIMG = ImageTk.PhotoImage(Image.open(downfilenames[0]).resize((320, 240)))
-downIMGLable = Label(image = downIMG)
-# downIMGLable.grid(row = 1, column = 3, columnspan = 4)
-
-# def upImage():
-upIMG = ImageTk.PhotoImage(Image.open(downfilenames[0]).resize((320, 240)))
-upIMGLable = Label(image = upIMG)
-upIMGLable.grid(row = 6, column = 2)
-
 root.title("Coloring utility")
 root.geometry("1280x720")
 root.resizable(width = False, height = False)
 
+# Переменные для обработки изобрадениия
+pixel = (0, 0, 0)
+pixelRight = (0, 0, 0)
+pR = 0
+pG = 0
+pB = 0
+
+# Функции
+def openfile():
+    filepath = filedialog.askopenfile(title="Select file")
+    print(filepath.read())
 def get_value(entryWidget):
     value = entryWidget.get()
     try:
         return int(value)
     except ValueError:
         return None
-
 def result():
     print("Working")
     upfilename = Image.open(upfilenames[0])
@@ -100,32 +51,44 @@ def result():
 
             # Пиксели цвета > (0, 0, 0) крашу в (255, 255, 255)
             if upfilename.getpixel((i, j)) > (0, 0, 0): upfilename.putpixel((i, j), (255, 255, 255))
-    # upfilename.save("result2")
     upfilename.show()
 
-frame_parogue = Frame(root)
+# Получение и обработка путя к файлу
+filetypes = (
+    ('IMG files', '*.jpg ' + '*,jpeg ' + '*.png '),
+    # ('IMG files', '*.jpg'),
+    ('All files', '*.*')
+)
+downfilenames = fd.askopenfilenames(
+    title='Coloring utility/open file',
+    initialdir='/',
+    filetypes=filetypes)
+upfilenames = Image.new(mode = "RGB", size = (1, 1))
+curDir = os.getcwd()
+fn = curDir
+downIMG = ImageTk.PhotoImage(Image.open(downfilenames[0]).resize((320, 240)))
+downIMGLable = Label(image = downIMG)
+upIMG = ImageTk.PhotoImage(Image.open(downfilenames[0]).resize((320, 240)))
+upIMGLable = Label(image = upIMG)
+upIMGLable.grid(row = 6, column = 2)
+
+# СОздание элементов экрана
 pR = Entry(text = "Red porogue")
 pG = Entry(text = "Green porogue")
 pB = Entry(text = "blue porogue")
-
 pRtext = Label(text = "Red porogue:")
 pGtext = Label(text = "Green porogue:")
 pBtext = Label(text = "blue porogue:")
-
 result = Button(text = "Result", command = result)
 
-result.grid(row = 5, column = 2)
-
+#  Размешение элементов на экраме при помощи grid
 pR.grid(row = 1, column = 2)
 pG.grid(row = 2, column = 2)
 pB.grid(row = 3, column = 2)
-
-# downIMG = ImageTk.PhotoImage(Image.open("/Users/lev/Documents/GitHub/Kirill_Images/icon.jpg").resize((320, 240)))
-# downIMGLable = Label(image = downIMG)
-# downIMGLable.grid(row = 6, column = 1)
-
 pRtext.grid(row = 1, column = 1)
 pGtext.grid(row = 2, column = 1)
 pBtext.grid(row = 3, column = 1)
+result.grid(row = 5, column = 2)
 
+# Бесконечный цикл обработки экрана
 root.mainloop()
