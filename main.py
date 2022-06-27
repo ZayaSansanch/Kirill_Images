@@ -30,8 +30,8 @@ for i in range(0, image.size[0]):
         if image.getpixel((i, j)) == (0, 0, 0): image.putpixel((i, j), (1, 1, 1))
         
         # Крашу линии
-        pixel = image.getpixel(i, j)
-        pixelRight = image.getpixel(i, j + 1)
+        pixel = image.getpixel((i, j))
+        pixelRight = image.getpixel((i, j + 1))
         
         if abs(pixel[0] - pixelRight[0]) > pR: cmena = True
         if abs(pixel[1] - pixelRight[1]) > pG: cmena = True
