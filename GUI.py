@@ -35,10 +35,15 @@ downfilenames = fd.askopenfilenames(
     initialdir='/',
     filetypes=filetypes)
 
-upfilenames = fd.askopenfilenames(
-    title='Coloring utility/save file',
-    initialdir='/',
-    filetypes=filetypes)
+# upfilenames = fd.askopenfilenames(
+#     title='Coloring utility/save file',
+#     initialdir='/',
+#     filetypes=filetypes)
+
+# print(downfilenames)
+# downfile = downfilenames[0].read()
+# Image.new(mode = "RGB", size = (downfile.size[0], downfile.size[1]))
+upfilenames = Image.new(mode = "RGB", size = (1, 1))
 
 # showinfo(
 #     title='Selected Files',
@@ -49,10 +54,11 @@ curDir = os.getcwd()
 fn = curDir
 
 root = Tk()
-print("Downfilenames: ", downfilenames[0], " Upfilenames", upfilenames[0])
+# print("Downfilenames: ", downfilenames[0], " Upfilenames", upfilenames[0])
+print("Downfilenames: ", downfilenames[0])
 downIMG = ImageTk.PhotoImage(Image.open(downfilenames[0]).resize((320, 240)))
 downIMGLable = Label(image = downIMG)
-# downIMGLable.grid(row = 8, column = 1)
+# downIMGLable.grid(row = 1, column = 3, columnspan = 4)
 
 # def upImage():
 upIMG = ImageTk.PhotoImage(Image.open(downfilenames[0]).resize((320, 240)))
@@ -116,7 +122,7 @@ pB.grid(row = 3, column = 2)
 
 # downIMG = ImageTk.PhotoImage(Image.open("/Users/lev/Documents/GitHub/Kirill_Images/icon.jpg").resize((320, 240)))
 # downIMGLable = Label(image = downIMG)
-downIMGLable.grid(row = 6, column = 1)
+# downIMGLable.grid(row = 6, column = 1)
 
 pRtext.grid(row = 1, column = 1)
 pGtext.grid(row = 2, column = 1)
