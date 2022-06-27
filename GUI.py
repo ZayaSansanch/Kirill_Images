@@ -1,4 +1,5 @@
 from cProfile import label
+from fileinput import filename
 from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageTk
@@ -42,14 +43,12 @@ def select_files():
 
     curDir = os.getcwd()
     fn = curDir
-    
-    # file = Entry(text = "file")
-    filetexttest = Label(text = "File name:")
 
-    downIMG = ImageTk.PhotoImage(Image.open(fn + file).resize((320, 240)))
+    print(filenames[0])
+    downIMG = ImageTk.PhotoImage(Image.open(filenames[0]).resize((320, 240)))
     downIMGLable = Label(image = downIMG)
-    
     downIMGLable.grid(row = 8, column = 1)
+    
 
 root = Tk()
 root.title("Coloring utility")
@@ -70,8 +69,6 @@ pBtext = Label(text = "blue porogue:")
 
 result = Button(text = "Result")
 
-
-
 fileOpen.grid(row = 2, column = 1)
 
 result.grid(row = 7, column = 1)
@@ -80,13 +77,12 @@ pR.grid(row = 3, column = 2)
 pG.grid(row = 4, column = 2)
 pB.grid(row = 5, column = 2)
 
+downIMG = ImageTk.PhotoImage(Image.open("/Users/lev/Documents/GitHub/Kirill_Images/icon.jpg").resize((320, 240)))
+downIMGLable = Label(image = downIMG)
+downIMGLable.grid(row = 8, column = 1)
 
 pRtext.grid(row = 3, column = 1)
 pGtext.grid(row = 4, column = 1)
 pBtext.grid(row = 5 , column = 1)
-
-# file.grid(row = 1, column = 2)
-# filetexttest.grid(row = 1, column = 1)
-
 
 root.mainloop()

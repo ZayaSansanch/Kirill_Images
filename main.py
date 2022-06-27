@@ -1,6 +1,5 @@
 from PIL import Image
 from PIL import ImageFilter
-
 # Переменные смен цвета
 pixel = (0, 0, 0)
 pixelRight = (0, 0, 0)
@@ -11,7 +10,6 @@ pb = 0
 
 # Открытие изображениия и применениие фильтров
 image_name = input("Print image name: ")
-# image_name = "icon.jpg"
 image = Image.open(image_name)
 image = image.filter(ImageFilter.SHARPEN)
 
