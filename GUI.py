@@ -14,7 +14,7 @@ downIMGLable = ""
 filepath = ""
 pixel = (0, 0, 0)
 pixelRight = (0, 0, 0)
-cmena = False
+# cmena = False
 pR = 0
 pG = 0
 pB = 0
@@ -63,10 +63,19 @@ root.title("Coloring utility")
 root.geometry("1280x720")
 root.resizable(width = False, height = False)
 
+def get_value(entryWidget):
+    value = entryWidget.get()
+    try:
+        return int(value)
+    except ValueError:
+        return None
+
 def result():
+    print("Working")
     upfilename = Image.open(upfilenames[0])
     for i in range(0, upfilename.size[0]):
         for j in range(0, upfilename.size[1]):
+            cmena = False
             # Пиксели цвета (0, 0, 0) крашу в (1, 1, 1)
             if upfilename.getpixel((i, j)) == (0, 0, 0): upfilename.putpixel((i, j), (1, 1, 1))
             
@@ -75,9 +84,9 @@ def result():
             if j < upfilename.size[1] - 1:
                 pixelRight = upfilename.getpixel((i, j + 1))
             
-            if abs(pixel[0] - pixelRight[0]) > pR: cmena = True
-            if abs(pixel[1] - pixelRight[1]) > pG: cmena = True
-            if abs(pixel[2] - pixelRight[2]) > pB: cmena = True
+            if abs(pixel[0] - pixelRight[0]) > get_value(pR): cmena = True
+            if abs(pixel[1] - pixelRight[1]) > get_value(pG): cmena = True
+            if abs(pixel[2] - pixelRight[2]) > get_value(pB): cmena = True
 
             if cmena == True:
                 upfilename.putpixel((i, j), (0, 0, 0))
@@ -85,7 +94,8 @@ def result():
 
             # Пиксели цвета > (0, 0, 0) крашу в (255, 255, 255)
             if upfilename.getpixel((i, j)) > (0, 0, 0): upfilename.putpixel((i, j), (255, 255, 255))
-    upfilename.save("result2")
+    # upfilename.save("result2")
+    upfilename.show()
 
 frame_parogue = Frame(root)
 pR = Entry(text = "Red porogue")
