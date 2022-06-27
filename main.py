@@ -1,7 +1,8 @@
 from PIL import Image
 
 # Задаю переменную прогресса
-progress, progresDown = 0
+progress = 0
+progresDown = 0
 
 # Открытие изображениия
 # image_name = input("Print image name: ")
@@ -16,8 +17,9 @@ for i in range(0, image.size[0]):
     # Работаю с прогрессом
     progress += 1
     # if progress % 10 == 0:
-    if 
-    print("Porgress: ", round((progress * 100) / image.size[0], 0), "%")
+    if progress != progresDown:
+        print("Porgress: ", round((progress * 100) / image.size[0], 0), "%")
+    progresDown = progress
     
     for j in range(0, image.size[1]):
         # Пиксели цвета (0, 0, 0) крашу в (1, 1, 1)
