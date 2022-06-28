@@ -32,9 +32,11 @@ def result():
     upfilename = Image.open(downfilenames[0])
     for i in range(0, upfilename.size[0]):
         for j in range(0, upfilename.size[1]):
-            cmena = False
             # Пиксели цвета (0, 0, 0) крашу в (1, 1, 1)
             if upfilename.getpixel((i, j)) == (0, 0, 0): upfilename.putpixel((i, j), (1, 1, 1))
+    for i in range(0, upfilename.size[0]):
+        for j in range(0, upfilename.size[1]):
+            cmena = False
             
             # Крашу линии
             pixel = upfilename.getpixel((i, j))
@@ -48,9 +50,20 @@ def result():
             if cmena == True:
                 upfilename.putpixel((i, j), (0, 0, 0))
                 cmena = False
-
+    for i in range(0, upfilename.size[0]):
+        for j in range(0, upfilename.size[1]):
             # Пиксели цвета > (0, 0, 0) крашу в (255, 255, 255)
             if upfilename.getpixel((i, j)) > (0, 0, 0): upfilename.putpixel((i, j), (255, 255, 255))
+    for i in range(0, upfilename.size[0]):
+        for j in range(0, upfilename.size[1]):
+            kolvo = 0
+            if upfilename.getpixel((i, j)) == (0, 0, 0):
+                if i > 0 and upfilename.getpixel((i - 1, j)) == (255, 255, 255): kolvo += 1
+                if i < upfilename.size[0] - 1 and upfilename.getpixel((i + 1, j)) == (255, 255, 255): kolvo += 1
+                if j > 0 and upfilename.getpixel((i, j - 1)) == (255, 255, 255): kolvo += 1
+                if j < upfilename.size[1] - 1 and upfilename.getpixel((i, j + 1)) == (255, 255, 255): kolvo += 1
+            if kolvo < 1:
+                upfilename.putpixel((i, j), (255, 255, 255))
     upfilename.show()
 
 # Получение и обработка путя к файлу
