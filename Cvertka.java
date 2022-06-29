@@ -3,8 +3,8 @@ import java.io.File;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.awt.*;
-import java.applet.*;
+// import java.awt.*; 
+// import java.applet.*;
 import java.lang.Math;
 import java.lang.Integer;
 
