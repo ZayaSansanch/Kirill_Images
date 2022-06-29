@@ -21,17 +21,38 @@ public class Cvert {
                 }
             }
 
-            int znach[][] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-            int k = 0;
-            while (k < 11) {
-                System.out.println("Iteretion: " + k);
-                k++;
+            int[][] znach = {
+                {0, 0, 0}, 
+                {0, 0, 0}, 
+                {0, 0, 0}
+            };
+
+            // int k = 0;
+            // while (k < 11) {
+                // System.out.println("Iteretion: " + k);
+                // k++;
                 for (int x = 0;  x < res.getWidth(); x++) {
                     for (int y = 0; y < res.getHeight(); y++) {
-                        res.setRGB(x, y, image.getRGB(x * 3, y * 3));
+                        if (
+                            (y > 0 & y < res.getHeight()) &
+                            (x > 0 & x < res.getWidth())
+                        ) {
+                            // // System.out.println(res.getRGB(x - 1, y - 1));
+                            // System.out.println(res.getRGB(x - 1, y));
+                            // System.out.println(res.getRGB(x - 1, y + 1));
+
+                            // System.out.println(res.getRGB(x, y - 1));
+                            System.out.println(res.getRGB(x, y));
+                            // System.out.println(res.getRGB(x, y + 1));
+
+                            // System.out.println(res.getRGB(x + 1, y - 1));
+                            // System.out.println(res.getRGB(x + 1, y));
+                            // System.out.println(res.getRGB(x + 1, y + 1));
+                        }
                     }
                 }
-            }
+
+            // }
 
             File cvert = new File("cvert.jpg");
             ImageIO.write(res, "jpg", cvert);
