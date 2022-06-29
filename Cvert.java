@@ -1,10 +1,10 @@
 import javax.imageio.ImageIO;
 import java.io.File;
-import java.awt.Color;
+// import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.Math;
-import java.lang.Integer;
+// import java.lang.Integer;
 
 public class Cvert {
     public static void main(String[] args) {
@@ -17,8 +17,19 @@ public class Cvert {
 
             for (int x = 0;  x < res.getWidth(); x++) {
                 for (int y = 0; y < res.getHeight(); y++) {
-                    // res.setRGB(x, y, ((x + y)%255) + ((x - y)%255));
-                    res.setRGB(x, y, (((y - x)%255) * ((x - y)%255)) ^ (((x + y)%255) * ((x - y)%255)));
+                    res.setRGB(x, y, image.getRGB(x * 3, y * 3));
+                }
+            }
+
+            int znach[][] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+            int k = 0;
+            while (k < 11) {
+                System.out.println("Iteretion: " + k);
+                k++;
+                for (int x = 0;  x < res.getWidth(); x++) {
+                    for (int y = 0; y < res.getHeight(); y++) {
+                        res.setRGB(x, y, image.getRGB(x * 3, y * 3));
+                    }
                 }
             }
 
