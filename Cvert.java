@@ -18,7 +18,7 @@ public class Cvert {
             for (int x = 0;  x < res.getWidth(); x++) {
                 for (int y = 0; y < res.getHeight(); y++) {
                     // res.setRGB(x, y, ((x + y)%255) + ((x - y)%255));
-                    res.setRGB(x, y, (((y - x)%255) * ((x - y)%255)) + (((x + y)%255) + ((x - y)%255)));
+                    res.setRGB(x, y, (((y - x)%255) * ((x - y)%255)) ^ (((x + y)%255) * ((x - y)%255)));
                 }
             }
 
