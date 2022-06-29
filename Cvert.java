@@ -34,8 +34,8 @@ public class Cvert {
                 for (int x = 0;  x < res.getWidth(); x++) {
                     for (int y = 0; y < res.getHeight(); y++) {
                         if (
-                            (y > 0 & y < res.getHeight()) &
-                            (x < 0 & x < res.getWidth())
+                            (y > 0 & y < res.getHeight() - 1) &
+                            (x > 0 & x < res.getWidth() - 1)
                         ) {
                             znach[0][0] = res.getRGB(x - 1, y - 1);
                             znach[0][1] = res.getRGB(x - 1, y);
@@ -54,7 +54,7 @@ public class Cvert {
                     for (int xx = 0;  xx < 3; xx++) {
                         for (int yy = 0; yy < 3; yy++) {
                             if (yy < 2) {
-                                System.out.print(znach[xx][yy]);
+                                System.out.print(znach[xx][yy] + " ");
                             } else {
                                 System.out.println(znach[xx][yy]);
                             }
