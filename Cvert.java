@@ -11,7 +11,6 @@ public class Cvert {
          * Variations
         */
         String OPF = args[0];
-        String SFN;
         // OFN = opening file name; SFN = saving file name;
         
         /*
