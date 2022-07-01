@@ -1,10 +1,8 @@
 import javax.imageio.ImageIO;
 import java.io.File;
-// import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.Math;
-// import java.lang.Integer;
 
 public class Cvert {
     void iteretionFunction(String OFN, String SFN, int num) {
@@ -57,18 +55,7 @@ public class Cvert {
                             res.setRGB(x + 1, y - 1, znach[2][0]);    res.setRGB(x + 1, y, znach[2][1]);    res.setRGB(x + 1, y + 1, znach[2][2]); 
                         }
                     }
-                    
-                    // for (int xx = 0;  xx < 3; xx++) {
-                    //     for (int yy = 0; yy < 3; yy++) {
-                    //         if (yy < 2) {
-                    //             System.out.print(znach[xx][yy] + " ");
-                    //         } else {
-                    //             System.out.println(znach[xx][yy]);
-                    //         }
-                    //     }
-                    // }
                 }
-
             }
 
             File cvert = new File(SFN);
