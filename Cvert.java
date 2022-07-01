@@ -5,6 +5,24 @@ import java.io.IOException;
 import java.lang.Math;
 
 public class Cvert {
+
+    public static void main(String[] args) {
+        /*
+         * Variations
+        */
+        String OPF = args[0];
+        String SFN;
+        // OFN = opening file name; SFN = saving file name;
+        
+        /*
+         * for for any manes finishing files and any mnojetel in iteretionFunction();
+         */
+        for (int i = 0; i < 11; i++) {
+            Cvert cvert = new Cvert();
+            cvert.iteretionFunction(OPF, "finished/" + i + ".jpg", i);
+        }
+    }
+    
     void iteretionFunction(String OFN, String SFN, int num) {
         // OFN = opening file name; SFN = saving file name;
         try {
@@ -63,14 +81,6 @@ public class Cvert {
 
         } catch (IOException e) {
             System.out.println("Can't read or save");
-        }
-    }
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 11; i++) {
-            Cvert cvert = new Cvert();
-
-            cvert.iteretionFunction(args[0], "finished/" + i + ".jpg", i);
         }
     }
 }
