@@ -40,12 +40,6 @@ public class Cvert {
                 }
             }
 
-            int[][] znach = {
-                {0, 0, 0}, 
-                {0, 0, 0}, 
-                {0, 0, 0}
-            };
-
             for (int x = 0;  x < res.getWidth(); x++) {
                 for (int y = 0; y < res.getHeight(); y++) {
                     if (
